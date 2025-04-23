@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 OPCOES_MARCAS = (
     (1, u'AUDI'),
     (2, u'BMW'),
