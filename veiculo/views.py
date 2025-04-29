@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from veiculo.models import Veiculo
 from django.views.generic import ListView
 
