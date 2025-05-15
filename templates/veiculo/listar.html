@@ -47,7 +47,7 @@
 <body>
     <h1>Carros Cadastrados</h1>
     
-    <a href="/carros/novo" class="add-btn">Adicionar Novo Carro</a>
+    <a href="/veiculo/novo" class="add-btn">Adicionar Novo Carro</a>
     
     <table>
         <thead>
@@ -57,26 +57,35 @@
                 <th>Modelo</th>
                 <th>Ano</th>
                 <th>Cor</th>
-                <th>Preço</th>
-                <th>Ações</th>
+                <th>Fotos</th>
             </tr>
         </thead>
         <tbody>
-            {% for carro in carros %}
-            <tr>
+            {% for carro in veiculos %}
+              <tr>
                 <td>{{ carro.id }}</td>
-                <td>{{ carro.marca }}</td>
+                <td>{{ carro.get_marca_display }}</td>
                 <td>{{ carro.modelo }}</td>
                 <td>{{ carro.ano }}</td>
-                <td>{{ carro.cor }}</td>
-                <td>R$ {{ carro.preco }}</td>
+                <td>{{ carro.get_cor_display }}</td>
                 <td>
-                    <a href="/carros/editar/{{ carro.id }}">Editar</a> | 
-                    <a href="/carros/excluir/{{ carro.id }}" onclick="return confirm('Tem certeza que deseja excluir este carro?')">Excluir</a>
+                    {% if carro.foto %}
+                        <img src="{{ carro.foto.url }}" alt="Foto do Carro" style="width: 100px; height: auto;">
+                    {% else %}
+                        <p>Sem foto disponível</p>
+                    {% endif %}
                 </td>
-            </tr>
+
+                <td>
+                    <div class="d-flex gap-3 justify-content-end">
+                        <a href="{{carro.id}}" class="btn btn-outline-info fw-bolder">Editar</a> |
+                        <a href="deletar/{{carro.id}}" class="btn btn-info text-white fw-bolder">Excluir</a>
+                        <!-- <btn class="Editar>Editar<btn btn-info text-white fw-bolder">Excluir</btn> -->
+                    </div>
+                </td>
+              </tr>
             {% endfor %}
-        </tbody>
+          </tbody>          
     </table>
 </body>
 </html>

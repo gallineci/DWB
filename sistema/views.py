@@ -9,7 +9,7 @@ class Login (View):
         if request.user.is_authenticated:
             return redirect("/veiculo")
         else:
-            return render(request,'autentificacao.html',contexto)
+            return render(request,'autenticacao.html',contexto)
 
     def post (self, request):
         user = authenticate(request, username=usuario, password=senha)
@@ -17,7 +17,7 @@ class Login (View):
             if user.is_active:
                 login(request,user)
                 return redirect ("/veiculo")
-            return render (request, 'autentificacao.html')
+            return render (request, 'autenticacao.html')
         usuario = request.POST.get('usuario',None)
         senha = request.POST.get('senha',None)
 

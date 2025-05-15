@@ -9,3 +9,7 @@ class Veiculo(models.Model):
     ano = models.IntegerField()
     cor = models.SmallIntegerField(choices=OPCOES_CORES)
     combustivel = models.SmallIntegerField(choices=OPCOES_COMBUSTIVEIS)
+    foto = models.ImageField(blank=True, null=True, upload_to='veiculo/fotos')
+
+    def __str__(self):
+        return f"{self.modelo} ({self.get_marca_display()}) - {self.ano}"
