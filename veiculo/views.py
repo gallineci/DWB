@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class ListarVeiculos(LoginRequiredMixin, ListView):
     model = Veiculo
     context_object_name = 'veiculos'
-    template_name = 'veiculo/listar.html'
+    template_name = 'listar.html'
 
 class CriarVeiculos (CreateView):
     model = Veiculo
