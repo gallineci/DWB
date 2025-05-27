@@ -82,10 +82,10 @@
             {% endif %}
         </div>
         
-        <form method="post" action="/veiculos/deletar/{{ veiculo.id }}">
+        <form method="post" action="{% url 'deletar-veiculo' veiculo.id %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
-            <a href="/veiculos" class="btn btn-secondary">Cancelar</a>
+            <a href="/veiculo" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>
