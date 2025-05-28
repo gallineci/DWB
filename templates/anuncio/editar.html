@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Anúncio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, input[type="text"], input[type="number"], textarea, input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="checkbox"] {
+      margin-top: 10px;
+      transform: scale(1.2);
+    }
+
+    .btn {
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 48%;
+    }
+
+    .btn-primary {
+      background: #007bff;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #0069d9;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 4%;
+      margin-top: 20px;
+    }
+
+    .errorlist {
+      color: red;
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <form method="post" enctype="multipart/form-data">
+    <h2>Editar Anúncio</h2>
+    
+    {% csrf_token %}
+
+    {% if form.errors %}
+      <div style="color: red; margin-bottom: 10px;">
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <label for="{{ form.veiculo.id_for_label }}">Veículo:</label>
+    {{ form.veiculo }}
+
+    <label for="{{ form.titulo.id_for_label }}">Título:</label>
+    {{ form.titulo }}
+
+    <label for="{{ form.descricao.id_for_label }}">Descrição:</label>
+    {{ form.descricao }}
+
+    <label for="{{ form.preco.id_for_label }}">Preço:</label>
+    {{ form.preco }}
+
+    <label for="{{ form.ativo.id_for_label }}">Ativo:</label>
+    {{ form.ativo }}
+
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary">Aplicar Alterações</button>
+      <button type="button" class="btn btn-secondary" onclick="history.back()">Cancelar</button>
+    </div>
+  </form>
+
+</body>
+</html>

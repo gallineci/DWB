@@ -44,8 +44,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ anuncio.titulo }}</h5>
                             <p class="card-text">{{ anuncio.descricao }}</p>
-                            <a href="{{ anuncio.id }}" class="btn btn-outline-primary">Editar</a>
-                            <a href="deletar/{{ anuncio.id }}" class="btn btn-danger">Excluir</a>
+                            <a href="{% url 'editar-anuncio' anuncio.id %}" class="btn btn-outline-primary">Editar</a>
+                            <a href="{% url 'deletar-anuncio' anuncio.id %}" class="btn btn-danger">Excluir</a>
                         </div>
                     </div>
                 </div>
