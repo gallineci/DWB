@@ -4,5 +4,5 @@ from anuncio.models import Anuncio
 class FormularioAnuncio(ModelForm):
     class Meta:
         model = Anuncio
-        exclude = []
+        exclude = ['anunciante', 'criado_em', 'atualizado_em', 'foto']
         

@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import ListarAnuncios, CriarAnuncio
+from anuncio.views import *
 
 urlpatterns = [
     path('', ListarAnuncios.as_view(), name='listar-anuncios'),
-    path('novo/', CriarAnuncio.as_view(), name='cadastrar=-anuncio'),
+    path('novo/', CriarAnuncio.as_view(), name='cadastrar-anuncio'),
 ]

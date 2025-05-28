@@ -3,6 +3,7 @@ from .models import Anuncio
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .forms import FormularioAnuncio
+from django.views import View
 
 class ListarAnuncios(ListView):
     model = Anuncio
@@ -14,3 +15,7 @@ class CriarAnuncio(CreateView):
     form_class = FormularioAnuncio
     template_name = 'anuncio/novo.html'
     success_url = reverse_lazy('listar-anuncios')
+
+    def form_valid(self, form):
+        form.instance.anunciante = self.request.user
+        return super().form_valid(form)
