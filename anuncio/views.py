@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.views.generic import ListView
 from .models import Anuncio
 from django.views.generic.edit import CreateView
@@ -10,6 +11,17 @@ class ListarAnuncios(ListView):
     model = Anuncio
     template_name = 'anuncio/listar.html'
     context_object_name = 'anuncios'
+    ordering = '-criado_em'  # Adicione esta linha para ordenar por data de criação
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            return queryset.filter(
+                Q(titulo__icontains=query) | 
+                Q(descricao__icontains=query)
+            ).order_by('-criado_em')
+        return queryset
 
 class CriarAnuncio(CreateView):
     model = Anuncio
